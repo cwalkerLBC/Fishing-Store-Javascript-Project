@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pies | Fake Fishing Site</title>
+    <link rel="stylesheet" href="site.css" type="text/css">
+   
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="equipment.html">Equipment</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <aside> <img src="images\logo.svg" alt="This is my logo"></aside>
+        <article>
+            <h1>Fishing Equipment</h1>
+            <section class="columns-desktop">
+                <div class="pie">
+                    <img src="images\Boots.jpg" alt="Boots">
+                    <div class="columns">
+                        <div class="title">Boots</div>
+                        <div class="price">12.95</div>
+                    </div>
+                    <div class="desc">Our famous fishing boots</div>
+                    <button data-order="boots">Order</button>
+                </div>
+                <div class="pie">
+                    <img src="images\Waders.jpg" alt="Waders">
+                    <div class="columns">
+                        <div class="title">Waders</div>
+                        <div class="price">15.95</div>
+                    </div>
+                    <div class="desc">A winter necessity!</div>
+                    <button data-order="waders">Order</button>
+                </div>
+
+
+            </section>
+        </article>
+    </main>
+    <footer>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="equipment.html">Pies</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </footer>
+</body>
+<script>
+    // the command below starts that script once the page is loaded
+    window.addEventListener("DOMContentLoaded", function(e){
+        
+        const orderButtons = document.querySelectorAll("button[data-order]");
+        
+        orderButtons.forEach(function(button) {
+
+            button.addEventListener("click", function(e) {
+                const button = e.currentTarget;
+                const container = button.parentNode;
+
+                const order = {
+                    id: button.getAttribute("data-order"),
+                    title: container.querySelector(".title").innerText,
+                    price: container.querySelector(".price").innerText,
+                    desc: container.querySelector(".desc").innerText
+
+                };
+
+                localStorage.setItem("order", JSON.stringify(order));
+
+                const url = window.location.href.replace("equipment.html","order.html");
+                window.location.href = url;
+
+
+            });
+            
+        });
+
+    });
+</script>
+
+</html>
